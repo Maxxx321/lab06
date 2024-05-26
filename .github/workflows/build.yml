@@ -1,0 +1,39 @@
+name: CMake Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure Solver
+        run: cmake ${{github.workspace}} -B ${{github.workspace}}/build -D PRINT_VERSION=${GITHUB_REF_NAME#v}
+
+      - name: Build Solver
+        run: cmake --build ${{github.workspace}}/build
+
+      - name: Build Package
+        run: cmake --build ${{github.workspace}}/build --target package
+
+      - name: Build Source Package
+        run: cmake --build ${{github.workspace}}/build --target package_source
+
+      - name: Make a Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: |
+            DEB
+            RPM
+            tar.gz
+            zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
