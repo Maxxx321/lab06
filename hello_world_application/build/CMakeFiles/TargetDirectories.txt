@@ -1,0 +1,5 @@
+/home/kali/workplace/lab03/hello_world_application/build/CMakeFiles/hello_world.dir
+/home/kali/workplace/lab03/hello_world_application/build/CMakeFiles/formatter_lib.dir
+/home/kali/workplace/lab03/hello_world_application/build/CMakeFiles/formatter_ex_lib.dir
+/home/kali/workplace/lab03/hello_world_application/build/CMakeFiles/edit_cache.dir
+/home/kali/workplace/lab03/hello_world_application/build/CMakeFiles/rebuild_cache.dir
